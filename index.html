@@ -200,6 +200,57 @@
     <span>Designed with care in Nagpur.</span>
   </div>
 </footer>
+<!-- Reserve Table Recurring Modal -->
+<div id="reserveModal" class="modal-overlay" style="display: none;">
+  <div class="modal-card">
+    <button class="modal-close" id="closeModalBtn" aria-label="Close modal">&times;</button>
+    <div class="modal-badge">Special Table</div>
+    <h3>PLANNING A VISIT?</h3>
+    <p>Tables fill up quickly during afternoons and evenings. Reserve yours in advance to skip the queue.</p>
+    <div class="modal-actions">
+      <a class="btn" href="https://www.swiggy.com/restaurants/july-7-gokulpeth-koramangala-nagpur-1302453/dineout" target="_blank" rel="noopener">Reserve Now</a>
+      <button class="btn btn-outline" id="dismissModalBtn">Maybe Later</button>
+    </div>
+  </div>
+</div>
+  <script>
+  (function () {
+    const modal = document.getElementById('reserveModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const dismissBtn = document.getElementById('dismissModalBtn');
 
+    let popupInterval = null;
+
+    function showModal() {
+      // Don't show if already open
+      if (modal.style.display !== 'flex') {
+        modal.style.display = 'flex';
+      }
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Set recurring 8-second trigger
+    function startInterval() {
+      popupInterval = setInterval(showModal, 8000);
+    }
+
+    // Event listeners to close the modal
+    closeBtn.addEventListener('click', closeModal);
+    dismissBtn.addEventListener('click', closeModal);
+
+    // Close when clicking on the outside dark overlay
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Start timer on page load
+    startInterval();
+  })();
+</script>
 </body>
 </html>
